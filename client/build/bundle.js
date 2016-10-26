@@ -19756,17 +19756,26 @@
 	
 	var React = __webpack_require__(1);
 	var Table = __webpack_require__(160);
+	var Menu = __webpack_require__(162);
 	
 	var Container = React.createClass({
 	  displayName: 'Container',
 	
 	
+	  getInitialState: function getInitialState() {
+	    return { selected: "home" };
+	  },
+	
+	  handleClick: function handleClick(clicked) {
+	    this.setState({ selected: clicked });
+	  },
+	
 	  render: function render() {
-	    var whichTable = "stock";
 	    return React.createElement(
 	      'div',
 	      { className: 'container' },
-	      React.createElement(Table, { url: this.props.url, tableSelect: whichTable })
+	      React.createElement(Menu, { handleClick: this.handleClick }),
+	      React.createElement(Table, { url: this.props.url, tableSelect: this.state.selected })
 	    );
 	  }
 	});
@@ -19789,7 +19798,7 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'table' },
-	      React.createElement(StockList, { url: this.props.url, visible: this.props.tableSelect === "stock" })
+	      React.createElement(StockList, { url: this.props.url, selected: this.props.tableSelect })
 	    );
 	  }
 	});
@@ -19877,7 +19886,6 @@
 	      });
 	    }
 	
-	    console.log(tableBody);
 	    // var displayValue = (this.props.visible) ? "block" : "none";
 	    var displayValue = "block";
 	    var style = { display: displayValue };
@@ -19898,6 +19906,77 @@
 	});
 	
 	module.exports = StockList;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var Menu = function Menu(props) {
+	
+	  var clickHome = function clickHome() {
+	    props.handleClick("home");
+	  };
+	
+	  var clickCurrentStock = function clickCurrentStock() {
+	    props.handleClick("currentStock");
+	  };
+	
+	  var clickNewStock = function clickNewStock() {
+	    props.handleClick("newStock");
+	  };
+	
+	  var clickStockReport = function clickStockReport() {
+	    rops.handleClick("stockReport");
+	  };
+	
+	  return React.createElement(
+	    "div",
+	    { id: "menu", "class": "menu" },
+	    React.createElement(
+	      "div",
+	      { "class": "sitename" },
+	      React.createElement(
+	        "i",
+	        null,
+	        React.createElement(
+	          "b",
+	          null,
+	          "Harvey's Records"
+	        )
+	      )
+	    ),
+	    React.createElement(
+	      "ul",
+	      { "class": "menu-items" },
+	      React.createElement(
+	        "li",
+	        { onClick: clickHome },
+	        "Home"
+	      ),
+	      React.createElement(
+	        "li",
+	        { onClick: clickCurrentStock },
+	        "Current Stock"
+	      ),
+	      React.createElement(
+	        "li",
+	        { onClick: clickNewStock },
+	        "New Stock"
+	      ),
+	      React.createElement(
+	        "li",
+	        { onClick: clickStockReport },
+	        "Stock Report"
+	      )
+	    )
+	  );
+	};
+	
+	module.exports = Menu;
 
 /***/ }
 /******/ ]);

@@ -5,7 +5,7 @@ var Table = React.createClass({
   render: function() {
     return(
       <div className="table">
-        <StockList url={this.props.url}visible={this.props.tableSelect === "stock"}></StockList>
+        <StockList url={this.props.url} selected={this.props.tableSelect}></StockList>
       </div>
     )
   }

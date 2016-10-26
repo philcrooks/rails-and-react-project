@@ -39,7 +39,6 @@ var StockList = React.createClass({
       })
     }
 
-    console.log(tableBody);
     // var displayValue = (this.props.visible) ? "block" : "none";
     var displayValue = "block";
     var style = {display: displayValue}

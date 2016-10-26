@@ -1,13 +1,22 @@
 var React = require('react');
 var Table = require('./table.jsx')
+var Menu = require('./menu.jsx')
 
 var Container = React.createClass({
 
+  getInitialState: function() {
+    return({selected: "home"})
+  },
+
+  handleClick: function(clicked) {
+    this.setState({selected: clicked})
+  },
+
   render: function() {
-    var whichTable = "stock";
     return(
       <div className="container">
-        <Table url={this.props.url} tableSelect={whichTable}></Table>
+        <Menu handleClick={this.handleClick}></Menu>
+        <Table url={this.props.url} tableSelect={this.state.selected}></Table>
       </div>
     )
   }
