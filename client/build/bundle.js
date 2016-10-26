@@ -19808,6 +19808,10 @@
 	  displayName: "StockList",
 	
 	
+	  getInitialState: function getInitialState() {
+	    return { stocks: null };
+	  },
+	
 	  componentDidMount: function componentDidMount() {
 	    this.getData();
 	  },
@@ -19817,15 +19821,79 @@
 	    request.open("GET", this.props.url + "/stocks");
 	    request.onload = function () {
 	      var stocks = JSON.parse(request.responseText);
-	      console.log(stocks);
-	    };
+	      this.setState({ stocks: stocks });
+	    }.bind(this);
 	    request.send();
 	  },
 	
 	  render: function render() {
-	    var displayValue = this.props.visible ? "block" : "none";
+	    var tableBody = "";
+	    if (this.state.stocks) {
+	      tableBody = this.state.stocks.map(function (stock, index) {
+	        return React.createElement(
+	          "tr",
+	          { key: index },
+	          React.createElement(
+	            "td",
+	            null,
+	            stock.album.artist.genre
+	          ),
+	          React.createElement(
+	            "td",
+	            null,
+	            stock.album.artist.name
+	          ),
+	          React.createElement(
+	            "td",
+	            null,
+	            stock.album.name
+	          ),
+	          React.createElement(
+	            "td",
+	            null,
+	            stock.format
+	          ),
+	          React.createElement(
+	            "td",
+	            null,
+	            stock.stock_level
+	          ),
+	          React.createElement(
+	            "td",
+	            null,
+	            stock.stock_theshold
+	          ),
+	          React.createElement(
+	            "td",
+	            null,
+	            stock.buy_price
+	          ),
+	          React.createElement(
+	            "td",
+	            null,
+	            stock.sell_price
+	          )
+	        );
+	      });
+	    }
+	
+	    console.log(tableBody);
+	    // var displayValue = (this.props.visible) ? "block" : "none";
+	    var displayValue = "block";
 	    var style = { display: displayValue };
-	    return React.createElement("div", { className: "StockList", style: style });
+	    return React.createElement(
+	      "div",
+	      { className: "StockList" },
+	      React.createElement(
+	        "table",
+	        null,
+	        React.createElement(
+	          "tbody",
+	          null,
+	          tableBody
+	        )
+	      )
+	    );
 	  }
 	});
 	
