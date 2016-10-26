@@ -9,6 +9,7 @@ var Container = React.createClass({
   },
 
   handleClick: function(clicked) {
+    console.log(clicked)
     this.setState({selected: clicked})
   },
 

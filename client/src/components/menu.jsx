@@ -15,13 +15,13 @@ var Menu = function(props) {
   }
 
   var clickStockReport = function() {
-    rops.handleClick("stockReport")
+    props.handleClick("stockReport")
   }
-  
+
   return (
-    <div id="menu" class="menu">
-      <div class="sitename"><i><b>Harvey's Records</b></i></div>
-       <ul class="menu-items">
+    <div id="menu" className="menu">
+      <div className="sitename"><i><b>Harvey's Records</b></i></div>
+       <ul className="menu-items">
         <li onClick={clickHome}>Home</li>
         <li onClick={clickCurrentStock}>Current Stock</li>
         <li onClick={clickNewStock}>New Stock</li>
