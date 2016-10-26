@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :albums
   end
 
-  reources :albums do
+  resources :albums do
     resources :artists
   end
 
